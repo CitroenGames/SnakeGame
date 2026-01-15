@@ -1,0 +1,11 @@
+[solution]
+name = SnakeGame
+
+include = 3rdparty/3rdparty.buildscript
+
+[project:SnakeGame]
+type = exe
+sources = src/*.cpp
+headers = src/*.h
+includes = src
+std = 20

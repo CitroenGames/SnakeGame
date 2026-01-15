@@ -1,0 +1,5 @@
+[project:SDL3]
+type = lib
+headers = include/**/*.h
+includes = include
+std = 17
