@@ -7,5 +7,6 @@ include = 3rdparty/3rdparty.buildscript
 type = exe
 sources = src/*.cpp
 headers = src/*.h
-includes = src
+includes = src, 3rdparty/SDL3-3.4.0/include
+libs = 3rdparty/SDL3-3.4.0/lib/x64/SDL3.lib
 std = 20
