@@ -98,10 +98,22 @@ int main(int argc, char* argv[]) {
                     game_over = false;
                 } else {
                     switch (e.key.scancode) {
-                        case SDL_SCANCODE_UP:    if(current_direction != Direction::DOWN) next_direction = Direction::UP; break;
-                        case SDL_SCANCODE_DOWN:  if(current_direction != Direction::UP) next_direction = Direction::DOWN; break;
-                        case SDL_SCANCODE_LEFT:  if(current_direction != Direction::RIGHT) next_direction = Direction::LEFT; break;
-                        case SDL_SCANCODE_RIGHT: if(current_direction != Direction::LEFT) next_direction = Direction::RIGHT; break;
+                        case SDL_SCANCODE_UP:
+                        case SDL_SCANCODE_W:
+                            if(current_direction != Direction::DOWN) next_direction = Direction::UP;
+                            break;
+                        case SDL_SCANCODE_DOWN:
+                        case SDL_SCANCODE_S:
+                            if(current_direction != Direction::UP) next_direction = Direction::DOWN;
+                            break;
+                        case SDL_SCANCODE_LEFT:
+                        case SDL_SCANCODE_A:
+                            if(current_direction != Direction::RIGHT) next_direction = Direction::LEFT;
+                            break;
+                        case SDL_SCANCODE_RIGHT:
+                        case SDL_SCANCODE_D:
+                            if(current_direction != Direction::LEFT) next_direction = Direction::RIGHT;
+                            break;
                         default: break;
                     }
                 }
@@ -126,9 +138,9 @@ int main(int argc, char* argv[]) {
                 if (new_head.y < 0) new_head.y = SCREEN_HEIGHT - SEGMENT_SIZE;
                 else if (new_head.y >= SCREEN_HEIGHT) new_head.y = 0;
 
-                // Self collision
+                // Self collision (use direct position comparison for grid-based game)
                 for (size_t i = 1; i < snake.size(); ++i) {
-                    if (SDL_HasRectIntersectionFloat(&new_head, &snake[i])) {
+                    if (new_head.x == snake[i].x && new_head.y == snake[i].y) {
                         game_over = true;
                         break;
                     }
@@ -137,7 +149,8 @@ int main(int argc, char* argv[]) {
                 if (!game_over) {
                     snake.push_front(new_head);
 
-                    if (SDL_HasRectIntersectionFloat(&new_head, &food)) {
+                    // Food collision (use direct position comparison for grid-based game)
+                    if (new_head.x == food.x && new_head.y == food.y) {
                         snake_grows = true;
                         spawnFood(food);
                         std::string title = "SnakeGame - Score: " + std::to_string(snake.size() - 3);
