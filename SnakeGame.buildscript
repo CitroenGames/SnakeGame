@@ -5,8 +5,12 @@ include = 3rdparty/3rdparty.buildscript
 
 [project:SnakeGame]
 type = exe
-sources = src/*.cpp
-headers = src/*.h
-includes = src, 3rdparty/SDL3-3.4.0/include
-libs = 3rdparty/SDL3-3.4.0/lib/x64/SDL3.lib
+if(Windows)
+{
+    subsystem = Windows
+}
+sources = src/**/*.cpp
+headers = src/**/*.h
+includes = src
+target_link_libraries(SDL3)
 std = 20
