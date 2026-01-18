@@ -1,1 +1,9 @@
-include = SDL3-3.4.0/sdl3.buildscript
+if(Windows)
+{
+    include = SDL3-3.4.0/sdl3.buildscript
+}
+
+if(Linux)
+{
+    find_package(SDL3 REQUIRED)
+}

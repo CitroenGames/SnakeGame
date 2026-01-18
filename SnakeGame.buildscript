@@ -12,5 +12,14 @@ if(Windows)
 sources = src/**/*.cpp
 headers = src/**/*.h
 includes = src
+if(Windows)
+{
 target_link_libraries(SDL3)
+}
 std = 20
+if(Linux)
+{
+    includes = ${SDL3_INCLUDE_DIRS}
+    libs = ${SDL3_LIBRARIES}
+    libdirs = ${SDL3_LIBRARY_DIRS}
+}
