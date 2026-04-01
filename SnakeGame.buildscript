@@ -1,22 +1,27 @@
 [solution]
 name = SnakeGame
+configurations = Debug, Release
+platforms = x64
 
 include = 3rdparty/3rdparty.buildscript
 
 [project:SnakeGame]
 type = exe
-if(Windows)
-{
-    subsystem = Windows
-}
 sources = src/**/*.cpp
 headers = src/**/*.h
 includes = src
+std = 20
+
+# Compiler settings
+multiprocessor = true
+warning_level = Level3
+
 if(Windows)
 {
-target_link_libraries(SDL3)
+    subsystem = Windows
+    target_link_libraries(SDL3)
 }
-std = 20
+
 if(Linux)
 {
     includes = ${SDL3_INCLUDE_DIRS}

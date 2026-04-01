@@ -1,13 +1,9 @@
 #include <iostream>
-#include <vector>
 #include <deque>
 #include <random>
 #include <string>
 #include "SDL3/SDL.h"
-
-#if defined(_WIN32) || defined(_WIN64)
-#include <windows.h>
-#endif
+#include "SDL3/SDL_main.h"
 
 enum class Direction {
     UP,
@@ -41,11 +37,7 @@ void resetGame(std::deque<SDL_FRect>& snake, Direction& direction, SDL_FRect& fo
     spawnFood(food);
 }
 
-#if defined(_WIN32) || defined(_WIN64)
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-#else
 int main(int argc, char* argv[]) {
-#endif
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;

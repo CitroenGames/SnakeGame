@@ -431,3 +431,4 @@ FodyWeavers.xsd
 *.sln
 *.slnx
 *.vcxproj
+.sighmake_cache
