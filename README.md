@@ -38,6 +38,9 @@ sudo apt install libsdl3-dev  # Debian/Ubuntu
 # Generate Makefile
 ./generate.sh
 
+# Or from command line
+sighmake SnakeGame.buildscript
+
 # Build
 sighmake --build . --config Release
 ```
